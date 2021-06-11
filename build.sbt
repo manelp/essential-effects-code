@@ -3,13 +3,14 @@ ThisBuild / organization := "com.innerproduct"
 ThisBuild / version := "0.0.1-SNAPSHOT"
 ThisBuild / fork := true
 
-val CatsVersion        = "2.2.0"
-val CatsEffectVersion  = "2.2.0"
-val CatsTaglessVersion = "0.11"
-val CirceVersion       = "0.13.0"
-val Http4sVersion      = "0.21.4"
-val LogbackVersion     = "1.2.3"
-val MunitVersion       = "0.7.8"
+val CatsVersion            = "2.6.1"
+val CatsEffectVersion      = "2.5.1"
+val CatsTaglessVersion     = "0.14.0"
+val CirceVersion           = "0.13.0"
+val Http4sVersion          = "0.21.24"
+val LogbackVersion         = "1.2.3"
+val MunitVersion           = "0.7.26"
+val MunitCatsEffectVersion = "1.0.0"
 
 val commonSettings =
   Seq(
@@ -28,7 +29,7 @@ lazy val exercises = (project in file("exercises"))
     libraryDependencies ++= Seq(
       "org.typelevel" %% "cats-effect"         % CatsEffectVersion,
       "org.typelevel" %% "cats-effect-laws"    % CatsEffectVersion % Test,
-      "org.typelevel" %% "munit-cats-effect-2" % "1.0.0" % "test"
+      "org.typelevel" %% "munit-cats-effect-2" % MunitCatsEffectVersion % "test"
     ),
     // remove fatal warnings since exercises have unused and dead code blocks
     scalacOptions --= Seq(
