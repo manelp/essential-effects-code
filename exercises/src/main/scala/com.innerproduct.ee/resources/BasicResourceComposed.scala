@@ -7,12 +7,11 @@ import com.innerproduct.ee.debug._
 object BasicResourceComposed extends IOApp {
   def run(args: List[String]): IO[ExitCode] =
     (stringResource, intResource).tupled // <2>
-      .use {
-        case (s, i) => // <2>
-          IO(s"$s is so cool!").debug *>
+    .use {
+      case (s, i) => // <2>
+        IO(s"$s is so cool!").debug *>
           IO(s"$i is also cool!").debug
-      }
-      .as(ExitCode.Success)
+    }.as(ExitCode.Success)
 
   val stringResource: Resource[IO, String] =
     Resource.make(
