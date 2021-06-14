@@ -8,6 +8,6 @@ val x = Some(1)
 
 // What about future?
 val print = Future(println("Hello World!"))
+
 val twice =
-  print
-    .flatMap(_ => print)
+  print.flatMap(_ => print)
