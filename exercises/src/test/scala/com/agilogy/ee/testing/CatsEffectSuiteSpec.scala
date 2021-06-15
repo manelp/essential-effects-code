@@ -17,7 +17,7 @@ final class CatsEffectSuiteSpec extends FunSuite {
 
   test("test fails side effects") {
     for {
-      res <- IO.raiseError(new RuntimeException("Boom!")) // run
+      _ <- IO.raiseError(new RuntimeException("Boom!")) // run
     } yield ()
   }
 
