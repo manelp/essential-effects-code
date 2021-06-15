@@ -1,9 +1,16 @@
-import scala.io.StdIn.readLine
 
 // Substitution
 def plusOne(i: Int): Int = i + 1
 
 val x = plusOne(plusOne(12))
+
+
+
+
+
+
+
+
 
 // Doesn't handle all cases
 
@@ -11,6 +18,7 @@ val x = plusOne(plusOne(12))
 val y = println("Hello world!")
 
 // reading from user
+// import scala.io.StdIn.readLine
 //val name = readLine
 
 // using mutable variables
