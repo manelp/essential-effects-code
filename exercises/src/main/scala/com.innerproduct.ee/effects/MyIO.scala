@@ -8,17 +8,24 @@ package com.innerproduct.ee.effects
 // 6. Implement flatMap
 
 case class MyIO[A](unsafeRun: () => A) { // <1>
-  def map[B](f: A => B): MyIO[B]           = ??? // 5
-  def flatMap[B](f: A => MyIO[B]): MyIO[B] = ??? // 6
+  def map[B](f: A => B): MyIO[B]           = MyIO(() => f(unsafeRun()))
+  def flatMap[B](f: A => MyIO[B]): MyIO[B] = MyIO(() => f(unsafeRun()).unsafeRun())
 
 }
 object MyIO {
-  def putStr(s: => String): MyIO[Unit] =
-    ??? // <2>
+  def putStr(s: => String): MyIO[Unit] = MyIO(() => println(s))
+
 }
 
 object Printing extends App {
   val hello = MyIO.putStr("hello!") // <3>
+  val world = MyIO.putStr(("world!"))
 
-  hello.unsafeRun() // 4
+  val helloWorld = for {
+    _ <- hello
+    _ <- world
+  } yield ()
+
+  helloWorld.unsafeRun()
+
 }
